@@ -1,11 +1,9 @@
 <template>
   <div>
-    <el-button type="primary">积极</el-button>
+    <RouterView />
   </div>
 </template>
 
-<script setup>
-</script>
+<script setup></script>
 
-<style scoped>
-</style>
+<style scoped></style>
