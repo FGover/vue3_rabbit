@@ -3,7 +3,7 @@
     <ul class="goods-list">
       <li v-for="item in newList" :key="item">
         <RouterLink to="/">
-          <img :src="item.picture" alt="" />
+          <img v-img-lazy="item.picture" alt="" />
           <p class="name">{{ item.name }}</p>
           <p class="price">￥{{ item.price }}</p>
         </RouterLink>
@@ -14,9 +14,9 @@
     <ul class="goods-list">
       <li v-for="item in hotList" :key="item">
         <RouterLink to="/">
-          <img :src="item.picture" alt="" />
-          <p class="name">好用优惠又便宜</p>
-          <p class="price">￥599.00</p>
+          <img v-img-lazy="item.picture" alt="" />
+          <p class="title">{{ item.title }}</p>
+          <p class="alt">{{ item.alt }}</p>
         </RouterLink>
       </li>
     </ul>
@@ -73,6 +73,13 @@ onMounted(() => {
     }
     .price {
       color: $priceColor;
+    }
+    .title {
+      font-size: 18px;
+    }
+    .alt {
+      color: #999;
+      font-size: 14px;
     }
   }
 }
