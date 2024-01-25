@@ -9,7 +9,7 @@
 </template>
 
 <script setup name="HomeBanner">
-import { getBannerAPI } from '@/stores/home'
+import { getBannerAPI } from '@/apis/home'
 import { ref, onMounted } from 'vue'
 const bannerList = ref([])
 const getBanner = async () => {
@@ -36,3 +36,4 @@ onMounted(() => {
   }
 }
 </style>
+@/apis/home
