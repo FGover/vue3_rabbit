@@ -11,12 +11,7 @@
         </RouterLink>
         <ul class="goods-list">
           <li v-for="i in item.goods" :key="i.id">
-            <RouterLink class="goods-item" to="/">
-              <img v-img-lazy="i.picture" alt="" />
-              <p class="name ellipsis">{{ i.name }}</p>
-              <p class="desc ellipsis">{{ i.desc }}</p>
-              <p class="price">￥{{ i.price }}</p>
-            </RouterLink>
+            <GoodsItem :goods="i" />
           </li>
         </ul>
       </div>
@@ -28,6 +23,7 @@
 import { findGoodsAPI } from '@/apis/home'
 import { ref, onMounted } from 'vue'
 import HomePanel from './HomePanel.vue'
+import GoodsItem from './GoodsItem.vue'
 
 const goodsProduct = ref([])
 const getGoods = async () => {
@@ -95,35 +91,6 @@ onMounted(() => {
         &:nth-child(4n) {
           margin-right: 0;
         }
-      }
-    }
-    .goods-item {
-      display: block;
-      width: 220px;
-      padding: 20px 30px;
-      text-align: center;
-      transition: all 0.5s;
-      &:hover {
-        transform: translate3d(0, -3px, 0);
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-      }
-      img {
-        width: 160px;
-        height: 160px;
-      }
-      p {
-        padding-top: 10px;
-      }
-      .name {
-        font-size: 16px;
-      }
-      .desc {
-        color: #999;
-        height: 29px;
-      }
-      .price {
-        color: $priceColor;
-        font-size: 20px;
       }
     }
   }
