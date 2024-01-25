@@ -10,17 +10,6 @@
       </li>
     </ul>
   </HomePanel>
-  <HomePanel title="人气推荐" sub-title="人气爆款 不容错过">
-    <ul class="goods-list">
-      <li v-for="item in hotList" :key="item">
-        <RouterLink to="/">
-          <img v-img-lazy="item.picture" alt="" />
-          <p class="title">{{ item.title }}</p>
-          <p class="alt">{{ item.alt }}</p>
-        </RouterLink>
-      </li>
-    </ul>
-  </HomePanel>
 </template>
 
 <script setup name="HomeNew">
@@ -29,19 +18,13 @@ import { findNewAPI, findHotAPI } from '@/apis/home'
 import { ref, onMounted } from 'vue'
 
 const newList = ref([])
-const hotList = ref([])
 const getNewList = async () => {
   const { result: res } = await findNewAPI()
   newList.value = res
 }
-const getHotList = async () => {
-  const { result: res } = await findHotAPI()
-  hotList.value = res
-}
 
 onMounted(() => {
   getNewList()
-  getHotList()
 })
 </script>
 
@@ -73,13 +56,6 @@ onMounted(() => {
     }
     .price {
       color: $priceColor;
-    }
-    .title {
-      font-size: 18px;
-    }
-    .alt {
-      color: #999;
-      font-size: 14px;
     }
   }
 }
