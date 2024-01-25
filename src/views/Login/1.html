@@ -5,38 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      *{
-        margin: 0;
-        padding: 0;
+      .box {}
+      .a {
+        position: relative;
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        z-index: 99;
       }
-      div {
-        padding: 0 15px;
-        width: 990px;
-        height: 500px;
-        background: rgba(255, 255, 255, 0.8);
-      }
-      ul {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      li {
-        border: 1px solid #eee;
-        list-style: none;
-        width: 310px;
-        height: 120px;
+      .b {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+        z-index: 98;
       }
     </style>
   </head>
   <body>
     
 <div class="box">
-  <h4>这是一个标题</h4>
-  <ul>
-    <li>列表项1</li>
-    <li>列表项2</li>
-    <li>列表项3</li>
-    <li>列表项3</li>
-  </ul>
+  <div class="a"></div>
+  <div class="b"></div>
 </div>
   </body>
 </html>
