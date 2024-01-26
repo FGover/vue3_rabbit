@@ -22,7 +22,7 @@
           <h3>全部分类</h3>
           <ul>
             <li v-for="item in categoryData.children" :key="item.id">
-              <RouterLink to="/">
+              <RouterLink :to="`/category/sub/${item.id}`">
                 <img v-img-lazy="item.picture" alt="" />
                 <p>{{ item.name }}</p>
               </RouterLink>
@@ -44,29 +44,12 @@
 </template>
 
 <script setup name="index">
-import { getCategoryAPI } from '@/apis/category'
-import { getBannerAPI } from '@/apis/home'
-import { ref, onMounted } from 'vue'
-import { useRoute } from 'vue-router'
 import GoodsItem from '@/views/Home/components/GoodsItem.vue'
+import { useBanner } from '@/hooks/useBanner'
+import { useCategory } from '@/hooks/useCategory'
 
-const categoryData = ref({})
-const bannerList = ref([])
-const route = useRoute()
-const getCategory = async () => {
-  const { result: res } = await getCategoryAPI(route.params.id)
-  categoryData.value = res
-}
-const getBanner = async () => {
-  const { result: res } = await getBannerAPI({
-    distributionSite: '2',
-  })
-  bannerList.value = res
-}
-onMounted(() => {
-  getCategory()
-  getBanner()
-})
+const { bannerList } = useBanner()
+const { categoryData } = useCategory()
 </script>
 
 <style lang="scss" scoped>

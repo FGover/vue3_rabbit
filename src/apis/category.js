@@ -8,3 +8,12 @@ export const getCategoryAPI = (id) => {
     },
   })
 }
+
+export const getCategoryFilterAPI = (id) => {
+  return httpInstance({
+    url: '/category/sub/filter',
+    params: {
+      id,
+    },
+  })
+}

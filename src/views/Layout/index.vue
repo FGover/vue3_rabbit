@@ -3,6 +3,8 @@
     <LayoutFixed />
     <LayoutNav />
     <LayoutHeader />
+    <!-- 添加key 破坏复用机制 强制销毁组件 -->
+    <!-- <RouterView :key="$route.fullPath"/> -->
     <RouterView />
     <LayoutFooter />
   </div>
