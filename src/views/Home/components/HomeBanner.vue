@@ -36,4 +36,3 @@ onMounted(() => {
   }
 }
 </style>
-@/apis/home

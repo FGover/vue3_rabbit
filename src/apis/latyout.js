@@ -1,6 +1,6 @@
 import httpInstance from '@/utils/http'
 
-export function getCategoryAPI() {
+export const getCategoryAPI = () => {
   return httpInstance({
     url: '/home/category/head',
   })
