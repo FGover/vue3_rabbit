@@ -5,32 +5,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .box {}
-      .a {
-        position: relative;
-        width: 100px;
-        height: 100px;
-        background-color: red;
-        z-index: 99;
+      ul {
+        display: flex;
       }
-      .b {
-        position: absolute;
-        left: 0;
-        top: 0;
+      li {
         width: 100px;
         height: 100px;
-        background-color: blue;
-        z-index: 98;
+        position: relative;
+        ~ li::after {
+          content: '';
+          position: absolute;
+          width: 20px;
+          height: 20px;
+          border: 1px solid red;
+          left: 0;
+          top: 10px;
+        }
       }
     </style>
   </head>
   <body>
-    
-<div class="box">
-  <div class="a"></div>
-  <div class="b"></div>
-  <span>11</span>
-  <span>22</span>
-</div>
+    <div class="box">
+      <div class="a">
+        <ul>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
   </body>
 </html>
