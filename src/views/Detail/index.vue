@@ -69,6 +69,7 @@
               </dl>
             </div>
             <!-- sku组件 -->
+            <XtxSKu :goods="goods" @change="skuChange" />
             <!-- 数据组件 -->
             <!-- 按钮组件 -->
             <div>
@@ -109,6 +110,7 @@
 <script setup name="Detail">
 import DetailHot from './components/DetailHot.vue'
 import ImageView from '@/components/imageView/index.vue'
+import XtxSKu from '@/components/XtxSku/index.vue'
 import { getDetailAPI } from '@/apis/detail'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
@@ -118,6 +120,11 @@ const goods = ref({})
 const getGoods = async () => {
   const { result: res } = await getDetailAPI(route.params.id)
   goods.value = res
+}
+
+// sku规格被操作时
+const skuChange = (sku) => {
+  console.log(sku)
 }
 
 onMounted(() => {
@@ -167,6 +174,7 @@ onMounted(() => {
             &:nth-child(2) {
               color: $priceColor;
               margin-top: 10px;
+              font-size: 12px;
             }
             &:last-child {
               color: #666;
