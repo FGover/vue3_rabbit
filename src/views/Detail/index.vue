@@ -71,9 +71,10 @@
             <!-- sku组件 -->
             <XtxSKu :goods="goods" @change="skuChange" />
             <!-- 数据组件 -->
+            <el-input-number v-model="count" :min="1" @change="handleChange" />
             <!-- 按钮组件 -->
             <div>
-              <el-button size="large" type="primary" class="btn">加入购物车</el-button>
+              <el-button @click="addCart" size="large" type="primary" class="btn">加入购物车</el-button>
             </div>
           </div>
         </div>
@@ -114,17 +115,49 @@ import XtxSKu from '@/components/XtxSku/index.vue'
 import { getDetailAPI } from '@/apis/detail'
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
+import { useCartStore } from '@/stores/cart'
+import { ElMessage } from 'element-plus'
+// import 'element-plus/theme-chalk/el-message.css'
 
 const route = useRoute()
 const goods = ref({})
+const count = ref(0)
+const cartStore = useCartStore()
+
 const getGoods = async () => {
   const { result: res } = await getDetailAPI(route.params.id)
   goods.value = res
 }
 
 // sku规格被操作时
+let skuObj = {}
 const skuChange = (sku) => {
   console.log(sku)
+  skuObj = sku
+}
+
+// 加1
+const handleChange = (count) => {
+  console.log(count)
+}
+
+// 加入购物车
+const addCart = () => {
+  if(skuObj.skuId) {
+    cartStore.addCart({
+      id: goods.value.id,
+      name: goods.value.name,
+      picture: goods.value.mainPictures[0],
+      price: goods.value.price,
+      count: count.value,
+      skuId: skuObj.skuId,
+      attrsText: skuObj.specsText,  // 商品规格文本
+      selected: true
+    })
+    ElMessage.success('加入购物车成功')
+  }else {
+    ElMessage.warning('请选择完整规格')
+  }
 }
 
 onMounted(() => {

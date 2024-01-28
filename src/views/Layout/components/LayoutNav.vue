@@ -31,7 +31,7 @@
 <script setup name="LayoutNav">
 import { useUserStore } from '@/stores/user'
 import { ElMessage } from 'element-plus'
-import 'element-plus/theme-chalk/el-message.css'
+// import 'element-plus/theme-chalk/el-message.css'
 import { useRouter } from 'vue-router'
 const userStore = useUserStore()
 const router = useRouter()
@@ -44,7 +44,6 @@ const confirm = () =>{
 
 const cancel = () =>{
   ElMessage('已取消退出登录')
-  
 }
 
 </script>
